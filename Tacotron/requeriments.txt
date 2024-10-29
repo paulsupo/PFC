@@ -1,0 +1,6 @@
+pandas
+tensorflow
+scikit-learn
+tqdm
+matplotlib
+librosaclea
