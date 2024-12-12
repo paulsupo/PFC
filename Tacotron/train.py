@@ -45,8 +45,11 @@ y = X   # La entrada y la salida son iguales (autoencoder)
 # Asegurar que la salida tenga la forma adecuada (agregamos una dimensión extra)
 y = np.expand_dims(y, axis=-1)
 
-# División de los datos entre entrenamiento y validación
-X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
+# División inicial: 80% para entrenamiento, 20% para validación y prueba
+X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# División secundaria: 10% validación, 10% prueba
+X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=42)
 
 print("Definiendo el modelo...")
 input_text = Input(shape=(max_len,), dtype='int32', name='input_text')  # Ajustar para que la entrada tenga la longitud deseada
